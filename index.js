@@ -74,6 +74,9 @@ io.sockets.on('connection', function (socket) {
 	photos.on('removed', function (old_photo) {
 		io.sockets.emit('removed', path.basename(old_photo));
 	});
+	alarm.on('data', function (data) {
+		io.sockets.emit('sensor', data);
+	});
 	// remote event
 	socket.on('tweet', function (photo) {
 		console.log('Tweeting', photo);
