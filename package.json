@@ -9,9 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-twitter": "^0.5.0",
-    "noble": "^0.3.0",
     "bleno": "^0.1.4",
-    "express": "^4.1.1"
+    "express": "^4.1.1",
+    "morgan": "^1.0.1",
+    "noble": "^0.3.0",
+    "node-twitter": "^0.5.0"
   }
 }
