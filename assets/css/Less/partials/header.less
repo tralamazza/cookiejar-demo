@@ -1,0 +1,52 @@
+header{
+	width:100%;
+	min-height:60px;
+	background-color:@blueTheme;
+	display: block;
+	position:fixed;
+	z-index: 100;
+	h1{
+		color: #fff;
+		font-weight: 300;
+		margin: 0;
+		float: left;
+		font-size: 25px;
+		padding: 14px;
+		padding-right: 40px;
+		padding-left: 40px;
+		cursor: pointer;
+	}
+
+	div.login{
+		float:right;
+		min-width: 100px;
+		height:100%;
+		position:relative;
+		a{
+			color:lighten(@textColor, 10%);
+			text-decoration: none;
+			margin:20px;
+			float:right;
+			font-weight:100;
+			&:hover{
+				color:white;
+			}
+		}
+	}
+}
+
+.sectionControls{
+	position:absolute;
+	margin-left:20px;
+	top: 0px;
+	.transition(all,100ms,ease);
+	a{
+		padding: 10px;
+		float: left;
+		font-size: 13px;
+		margin-top: 10px;
+		margin-left:5px;
+		.smallButton;
+		.darkblueButton;
+	}
+}

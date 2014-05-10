@@ -1,0 +1,135 @@
+body{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 100%;
+	background-color: white;
+	font: inherit;
+	margin:0px;
+	background-color:rgb(231, 231, 231);
+}
+
+h1, h2,h3,h4,h5,h6, a,p,input{
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+section.main{
+	width: 100%;
+	position:relative;
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:100%;
+
+	overflow:hidden;
+	article.history{
+		display: inline-block;
+		width:100%;
+		height:100%;
+		position:absolute;
+		top:0px;
+		left:0px;
+		margin-top:0px;
+		.transition(all,30000ms,linear);
+		figure{
+			margin:0px;
+			float:left;
+			display: inline-block;
+			width:10%;
+			height:120px;
+			background-color:gray;
+			overflow:hidden;
+			.transition(all,300ms,ease);
+			.grayscale(100%);
+			cursor:pointer;
+			&:hover{
+				.transition(all,300ms,ease);
+				.grayscale(0%);
+
+			}
+		}
+		figure.selected{
+			.transition(all,300ms,ease);
+			.grayscale(0%);			
+		}
+
+
+	}
+	article.sway{
+		.transition(all,30000ms,linear);
+		top:-80%;
+	}
+
+	article.modal{
+		.transition(all,300ms,ease);
+		position:fixed;
+		width:100%;
+		height:100%;
+		left:0px;
+		right:0px;		
+		.perspective;
+		text-align: center;
+		background-color:transparent;
+
+		div.content{
+			margin:0px auto;
+			width:600px;
+			min-height:200px;
+			margin-top:200px;
+			position: relative;
+			display:inline-block;
+			.scaleAndRotateX(0, 90deg);
+			.box-shadow(5px 5px 5px rgba(70, 70, 70, 0.75));
+
+			img{
+				float:left;
+				width:600px;
+				height:auto;
+				display: inline-block;
+			}
+
+			span{
+				position:absolute;
+				top:0px;
+				.transition(all,300ms,ease-in);
+				height:100px;
+				.opacity(0);
+				width:100%;
+				left:0px;
+				.scale(0);
+				h1{
+					font-size: 30px;
+					font-weight: 300;
+					background-color: rgba(0, 136, 189, 0.93);
+					width: 280px;
+
+					padding: 10px;
+					margin: 0px auto;
+					color: white;
+					.rounded-corners(10px);
+					strong{
+						color:red;
+						font-size:50px;
+					}
+				}
+			}
+			span.show{
+				top:-150px;
+				.opacity(1);
+				.transition(all,300ms,ease-in);
+				.scale(1);
+			}
+		}
+
+	}
+
+	article.modal.show{
+		.transition(all,300ms,ease);
+		background-color:rgba(255, 255, 255, 0.4);
+		div.content{
+			.transition(all,700ms,ease);
+			.scaleAndRotateX(1.0, 0deg);
+		}
+		
+
+	}
+}
+
