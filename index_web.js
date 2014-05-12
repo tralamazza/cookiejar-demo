@@ -9,7 +9,7 @@ var app = express();
 app.engine('jade', require('jade').__express);
 
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade')
+app.set('view engine', 'jade');
 app.use(logger());
 app.use(express.static(__dirname + '/assets'));
 app.get('/', function (req, res) {
