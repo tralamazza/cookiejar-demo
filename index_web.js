@@ -1,5 +1,7 @@
 var express = require('express');
 var logger = require('morgan');
+var photos = require('./lib/photos');
+
 
 var app = express();
 
@@ -14,4 +16,19 @@ app.set('view engine', 'jade')
 app.use(logger());
 app.use(express.static(__dirname + '/assets'));
 
-app.listen(3456);
+var io = require('socket.io').listen(app.listen(3456));
+
+io.sockets.on('connection', function (socket) {
+	socket.on('init', function (data) {
+		photos.list(function (all_photos) {
+			io.sockets.emit('photos', all_photos);
+		});
+	});
+	photo.on('added', function (new_photo) {
+		io.sockets.emit('added', [new_photo]);
+	});
+	photo.on('removed', function (new_photo) {
+		io.sockets.emit('removed', [new_photo]);
+	});
+});
+
