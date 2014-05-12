@@ -19,16 +19,14 @@ app.use(express.static(__dirname + '/assets'));
 var io = require('socket.io').listen(app.listen(3456));
 
 io.sockets.on('connection', function (socket) {
-	socket.on('init', function (data) {
-		photos.list(function (all_photos) {
-			io.sockets.emit('photos', all_photos);
+	photos.list(function (all_photos) {
+		io.sockets.emit('photos', all_photos);
+		photo.on('added', function (new_photo) {
+			io.sockets.emit('added', new_photo);
 		});
-	});
-	photo.on('added', function (new_photo) {
-		io.sockets.emit('added', [new_photo]);
-	});
-	photo.on('removed', function (new_photo) {
-		io.sockets.emit('removed', [new_photo]);
+		photo.on('removed', function (old_photo) {
+			io.sockets.emit('removed', old_photo);
+		});
 	});
 });
 
