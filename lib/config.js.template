@@ -1,0 +1,26 @@
+var path = require('path');
+
+
+var Config = {
+	// snapshot
+	snap: {
+		command: 'v4l2grab',
+		args: null,
+	},
+
+	// twitter
+	twitter: {
+		api_key: '',
+		api_secret: '',
+		access_token: '-KIcvQBLVo1j7QGLleDMod7njPr5LPslCOAICDRo',
+:x
+	},
+
+	// web
+	web: {
+		assets: path.join(__dirname, '..', 'assets'),
+		images: path.join(__dirname, '..', 'assets', 'images')
+	}
+};
+
+module.exports = Config;
