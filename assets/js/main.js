@@ -126,7 +126,9 @@ socket.on("added", function(photo){
 	if ($.inArray(photo, currentPhotos) > -1){
 	}else{
 
+		$(".modal .content img").attr("src","/images/"+photo);
 		currentPhotos.push(photo);
+		hand();
 		$(".history").append("<figure file='"+photo+"'><img src='/images/"+photo+"'/></figure>");
 	}
 
@@ -143,4 +145,8 @@ socket.on("removed", function(photo){
 
 });
 
+
+$(window).on("click", ".modal", function(){
+	hand();
+});
 
