@@ -1,5 +1,4 @@
-
-/* CORE
+/* CORE (done)
  * - wait for BLE notification
  * - detect cookie theft
  * - take a picture
@@ -7,21 +6,69 @@
  * - post to twitter
  *
  * EXTRA
- * - big red button
+ * - big red button (done)
  * - LEDs
  * */
 
-var notify_authorities = require('./lib/notify');
-var theft_in_progress = require('./lib/theft');
+var express = require('express');
+var http = require('http');
+var config = require('./lib/config');
+var createPhotos = require('./lib/photos');
+var createTweet = require('./lib/tweet');
+var createAlarm = require('./lib/alarm');
+var createSnap  = require('./lib/snap');
 
 
-theft_in_progress(function (err, photo) {
-	if (err) {
-		console.log(err);
-	} else {
-		notify_authorities('Thief detected!', photo, function (err) {
-			console.log(err);
-		});
-	}
+var app = express();
+app.engine('jade', require('jade').__express);
+app.set('views', config.web.views);
+app.set('view engine', 'jade');
+app.use(express.static(config.web.assets));
+
+app.get('/', function (req, res) {
+	res.render('index');
 });
 
+var server = http.createServer(app).listen(config.web.port, function () {
+	console.log('HTTP server listening on port', config.web.port);
+});
+
+var io = require('socket.io').listen(server);
+
+var photos = createPhotos();
+var tweet = createTweet();
+var alarm = createAlarm();
+var snap = createSnap();
+
+alarm.on('theft', function (readings) {
+	console.log('Thief!', readings);
+	snap.take(function (err, photo) {
+		if (err)
+			console.log('[snap]', err);
+		else
+			io.sockets.emit('added', photo);
+	});
+});
+alarm.on('error', function (err) {
+	console.log('[alarm]', err);
+});
+
+io.sockets.on('connection', function (socket) {
+	photos.list(function (err, all_photos) {
+		if (err)
+			console.log('[photos list]', err);
+		// send all pictures
+		io.sockets.emit('photos', all_photos);
+	});
+	photos.on('removed', function (old_photo) {
+		io.sockets.emit('removed', old_photo);
+	});
+	// remote event
+	socket.on('tweet', function (photo) {
+		console.log('Tweeting', photo);
+		tweet.post('cookies!', photo, function (err) {
+			console.log('[Tweet]', err);
+		});
+		alarm.rearm();
+	});
+});
