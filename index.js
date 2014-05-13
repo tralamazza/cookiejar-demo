@@ -17,6 +17,7 @@ var createPhotos = require('./lib/photos');
 var createTweet = require('./lib/tweet');
 var createAlarm = require('./lib/alarm');
 var createSnap  = require('./lib/snap');
+var createButton = require('./lib/button');
 
 
 var app = express();
@@ -39,6 +40,7 @@ var photos = createPhotos();
 var tweet = createTweet();
 var alarm = createAlarm();
 var snap = createSnap();
+var button = createButton(114, 'rising');
 
 alarm.on('theft', function (readings) {
 	console.log('Thief!', readings);
@@ -51,6 +53,13 @@ alarm.on('theft', function (readings) {
 });
 alarm.on('error', function (err) {
 	console.log('[alarm]', err);
+});
+
+button.on('pressed', function (value) {
+	console.log('[button]', value == 1 ? 'abort' : '');
+	if (value == 1) {
+		io.sockets.emit('abort');
+	}
 });
 
 io.sockets.on('connection', function (socket) {
