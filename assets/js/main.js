@@ -76,6 +76,11 @@ socket.on("removed", function(photo){
 
 });
 
+socket.on("abort", function(){
+	clearInterval(sout);
+	handOut();
+});
+
 function addImg(img){
 	$(".history").append("<figure file='"+img+"'><img width='480' height='270' src='/images/"+img+"'/></figure>");
 
