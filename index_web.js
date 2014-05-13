@@ -1,7 +1,7 @@
 var express = require('express');
 var logger = require('morgan');
 var http = require('http');
-var photos = require('./lib/photos');
+var photos = require('./lib/photos')();
 
 
 var app = express();
@@ -23,12 +23,12 @@ var server = http.createServer(app).listen(3456, function(){
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
-	photos.list(function (all_photos) {
+	photos.list(function (err, all_photos) {
 		io.sockets.emit('photos', all_photos);
-		photo.on('added', function (new_photo) {
+		photos.on('added', function (new_photo) {
 			io.sockets.emit('added', new_photo);
 		});
-		photo.on('removed', function (old_photo) {
+		photos.on('removed', function (old_photo) {
 			io.sockets.emit('removed', old_photo);
 		});
 	});

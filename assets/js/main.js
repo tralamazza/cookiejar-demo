@@ -116,3 +116,8 @@ socket.on('news', function (data) {
 console.log(data);
 socket.emit('my other event', { my: 'data' });
 });
+
+
+socket.on("photos", function(data){
+	console.log(data);
+});
