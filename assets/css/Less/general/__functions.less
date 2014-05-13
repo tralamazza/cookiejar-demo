@@ -97,6 +97,14 @@
   transform: rotateX(@deg);
 }
   
+.translate3d(@x:0px, @y:0px, @z:0px) {
+    transform: translate(@x,@y,@z);
+    -o-transform: translate(@x,@y,@z);         /* Opera */
+    -ms-transform: translate(@x,@y,@z);        /* IE 9 */
+    -moz-transform: translate(@x,@y,@z);       /* Firefox */
+    -webkit-transform: translate(@x,@y,@z);    /* Safari and Chrome */
+}
+
 //End 
 
 

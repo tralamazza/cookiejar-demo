@@ -13,7 +13,8 @@ $(document).ready(function(){
 	 
 	    for (var i = 0, photo; photo = photos[i]; i++) {
 	    	Max++;
-	    	$(".history").append("<figure style='background-image: url("+construcURL(photo)+");'></figure>");
+	    	/*$(".history").append("<figure style='background-image: url("+construcURL(photo)+");'></figure>");*/
+	    	$(".history").append("<figure><img src='"+construcURL(photo)+"'/></figure>");
 	    }
 	  }
 	);
@@ -25,6 +26,7 @@ $(document).ready(function(){
         "_" + photo.getAttribute("secret") +
         "_m.jpg";
    }
+ 	
  	$("article.history").addClass("sway");
    var mainTimer= setInterval(function(){
 
@@ -78,13 +80,26 @@ function hand(){
    $(".modal").removeClass("show");
    $(".modal").addClass("show");
    
-   setTimeout(function(){
+   var out = setTimeout(function(){
    	$(".modal .content span").addClass("show");
-		setInterval(function(){
+		var sout =setInterval(function(){
 			theFinalCountdown -=1;
 			$(".modal .content span h1 strong").html(theFinalCountdown);
+			if (sout == 0){
+				clearInterval(sout);
+			}
 		},1000);
    }, 1000);
 
+}
 
+function handOut(){
+	
+	$(".modal .content span").removeClass("show");
+	theFinalCountdown =0;
+	 setTimeout(function(){
+	   	$(".modal .content span").removeClass("show");
+
+	   	$(".modal").removeClass("show");
+   }, 500);
 }
