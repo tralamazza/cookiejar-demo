@@ -3,20 +3,20 @@ html
   head
     title #{title} - Demo
     link(rel='stylesheet', href='/css/app.css')
-    script(src="/js/jquery.js")
-      
-    script(src="/socket.io/socket.io.js", type="text/javascript")
-
-    script(src="/js/main.js")
 
   body
     section.main
       article.history
       article.modal
         div.content
-          img(src='')
+          img(src='', width='480', height='270')
           span
             <h1>You will be tweeted in <strong>5</strong> </h1>
 
 
 
+    script(src="/js/jquery.js")
+      
+    script(src="/socket.io/socket.io.js", type="text/javascript")
+
+    script(src="/js/main.js")

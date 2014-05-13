@@ -11,18 +11,6 @@
 }
 
 
-.backgroundImageCover{
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.boxSizing{
-	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
 .gradient (@origin: left, @start: #ffffff, @stop: #000000) {
     background-color: @start;
@@ -33,24 +21,6 @@
     background-image: linear-gradient(@origin, @start, @stop);
 }
 
-
-.noSelect{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.glow{
-    .transition(all,500ms,ease);
-    .box-shadow( 0px 0px 10px rgb(165, 165, 255));
-    .rounded-corners(5px);
-    padding: 15px;
-    left: -15px;
-    top: -15px;
-}
 
 .grayscale(@percent){
     -webkit-filter: grayscale(@percent);
@@ -160,17 +130,6 @@
 }
 
 
-.animSpin{
-    -webkit-animation-name: rotate; 
-    -webkit-animation-duration: 2s; 
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-
-    -moz-animation-name: rotate; 
-    -moz-animation-duration: 2s; 
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: linear;
-}
 
 @-webkit-keyframes rotate {
     from {-webkit-transform: rotate(0deg);}
