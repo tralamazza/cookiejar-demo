@@ -1,3 +1,5 @@
+var socket = io.connect('http://localhost:3456');
+
 $(document).ready(function(){
 	var Max =0;
 	$.get("http://api.flickr.com/services/rest/", {
@@ -71,7 +73,7 @@ $(document).ready(function(){
 });
 
 var sout;
-var theFinalCountdown = 5;
+var theFinalCountdown = 10;
 function hand(){
    $(".modal").removeClass("show");
    $(".modal").addClass("show");
@@ -83,8 +85,10 @@ function hand(){
 		$(".modal .content span h1 strong").html(theFinalCountdown);
 		if (theFinalCountdown === 0){
 			clearInterval(sout);
+			socket.emit("tweet",lastAddedPhoto);
 			handOut();
 		}
+
 	},1000);
 
 }
@@ -92,22 +96,23 @@ function hand(){
 function handOut(){
 	
 	$(".modal .content span").removeClass("show");
-	theFinalCountdown =5;
+	theFinalCountdown =10;
 	$(".modal .content span").removeClass("show");
 
 	$(".modal").removeClass("show");
 
 
 }
-var scrlAmount = 0;
 
+
+var scrlAmount = 0;
 var currentPhotos = [];
+var lastAddedPhoto;
 function scrollPage(){
 	scrlAmount = scrlAmount - $(window).height();
 	$(".history").css("top",scrlAmount+"px");
 }
 
-var socket = io.connect('http://localhost:3456');
 
 
 
@@ -123,7 +128,7 @@ socket.on("added", function(photo){
 
 	if ($.inArray(photo, currentPhotos) > -1){
 	}else{
-
+		lastAddedPhoto = photo;
 		$(".modal .content img").attr("src","/images/"+photo);
 		currentPhotos.push(photo);
 		hand();
@@ -133,7 +138,6 @@ socket.on("added", function(photo){
 });
 
 socket.on("removed", function(photo){
-	console.log(photo)
 	if ($.inArray(photo, currentPhotos) > -1){
 		currentPhotos.split(currentPhotos.indexOf(photo));
 		console.log("found in array, remove it");
