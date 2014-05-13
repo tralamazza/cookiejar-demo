@@ -26,7 +26,7 @@ $(document).ready(function(){
         "_" + photo.getAttribute("secret") +
         "_m.jpg";
    }
- 	
+
  	//$("article.history").addClass("sway");
 /*   var mainTimer= setInterval(function(){
 
@@ -47,8 +47,8 @@ $(document).ready(function(){
 
 
    		$("article.history figure").removeClass("selected");
-   		for (var i = cycle; i < cycle + 20; i++) { 
-    		$("article.history").find("figure").eq(i).addClass("selected");
+   		for (var i = cycle; i < cycle + 20; i++) {
+   			$("article.history").find("figure").eq(i).addClass("selected");
 		}
 		
 	   	if ($("article.history").hasClass("sway")){
@@ -69,11 +69,8 @@ $(document).ready(function(){
 		
 
    },3000);
+});
 
-
-
-
-});   
 
 var theFinalCountdown = 50;
 function hand(){
