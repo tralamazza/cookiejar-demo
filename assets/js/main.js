@@ -70,34 +70,32 @@ $(document).ready(function(){
    },3000);
 });
 
-
-var theFinalCountdown = 50;
+var sout;
+var theFinalCountdown = 5;
 function hand(){
    $(".modal").removeClass("show");
    $(".modal").addClass("show");
+	clearInterval(sout);
 
-   var out = setTimeout(function(){
-		$(".modal .content span").addClass("show");
-		var sout = setInterval(function(){
-			theFinalCountdown -=1;
-			$(".modal .content span h1 strong").html(theFinalCountdown);
-			if (sout === 0){
-				clearInterval(sout);
-			}
-		},1000);
-   }, 1000);
+	$(".modal .content span").addClass("show");
+	sout = setInterval(function(){
+		theFinalCountdown -=1;
+		$(".modal .content span h1 strong").html(theFinalCountdown);
+		if (theFinalCountdown === 0){
+			clearInterval(sout);
+			handOut();
+		}
+	},1000);
 
 }
 
 function handOut(){
 	
 	$(".modal .content span").removeClass("show");
-	theFinalCountdown =0;
-	setTimeout(function(){
-		$(".modal .content span").removeClass("show");
+	theFinalCountdown =5;
+	$(".modal .content span").removeClass("show");
 
-		$(".modal").removeClass("show");
-   }, 500);
+	$(".modal").removeClass("show");
 
 
 }
@@ -145,8 +143,4 @@ socket.on("removed", function(photo){
 
 });
 
-
-$(window).on("click", ".modal", function(){
-	hand();
-});
 
