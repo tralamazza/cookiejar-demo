@@ -91,6 +91,6 @@ socket.on("abort", function(){
 });
 
 function addImg(img){
-	$(".history").append("<figure file='"+img+"'><img width='480' height='270' src='/images/"+img+"'/></figure>");
+	$(".history").prepend("<figure file='"+img+"'><img width='480' height='270' src='/images/"+img+"'/></figure>");
 
 }
