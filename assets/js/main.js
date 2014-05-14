@@ -4,6 +4,7 @@ var socket = io.connect('http://localhost:3456');
 $(document).ready(function(){
 	setTimeout(function(){
 		$(".twitter > #twitter-widget-0").contents().find("head").append("<link rel='stylesheet' href='/css/app.css'>");
+		$(".twitter > #twitter-widget-0").contents().find("h1").html("Chocolate Feed");
 		console.log($(".twitter > #twitter-widget-0").contents());
 		window.contents = $(".twitter > #twitter-widget-0").contents();
 	},5000);
