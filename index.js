@@ -12,6 +12,7 @@
 
 var express = require('express');
 var http = require('http');
+var path = require('path');
 var config = require('./lib/config');
 var createPhotos = require('./lib/photos');
 var createTweet = require('./lib/tweet');
@@ -75,7 +76,7 @@ io.sockets.on('connection', function (socket) {
 	// remote event
 	socket.on('tweet', function (photo) {
 		console.log('Tweeting', photo);
-		tweet.post('cookies!', photo, function (err) {
+		tweet.post('cookies!', path.join(config.web.images, photo), function (err) {
 			console.log('[Tweet]', err);
 		});
 		alarm.rearm();
