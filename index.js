@@ -49,7 +49,7 @@ alarm.on('theft', function (readings) {
 		if (err)
 			console.log('[snap]', err);
 		else
-			io.sockets.emit('added', photo);
+			io.sockets.emit('added', path.basename(photo));
 	});
 });
 alarm.on('error', function (err) {
@@ -60,6 +60,7 @@ button.on('pressed', function (value) {
 	console.log('[button]', value == 1 ? 'abort' : '');
 	if (value == 1) {
 		io.sockets.emit('abort');
+		alarm.rearm();
 	}
 });
 
@@ -71,7 +72,7 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.emit('photos', all_photos);
 	});
 	photos.on('removed', function (old_photo) {
-		io.sockets.emit('removed', old_photo);
+		io.sockets.emit('removed', path.basename(old_photo));
 	});
 	// remote event
 	socket.on('tweet', function (photo) {
