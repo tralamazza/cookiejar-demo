@@ -2,23 +2,39 @@ var path = require('path');
 
 
 var Config = {
+	// color sensor
+	sensor: {
+		uuid: 'fe022a76983b',
+		handle: 0x0012,
+		threshold: 500
+	},
+
 	// snapshot
 	snap: {
 		command: 'v4l2grab',
-		args: null,
+		args: ['-d', '/dev/video0', '-W', '1280', '-H', '720']
+	},
+
+	// image convert
+	convert: {
+		command: 'convert',
+		args: ['-resize', '480x270']
 	},
 
 	// twitter
 	twitter: {
+		message: 'BUSTED!',
 		api_key: '',
 		api_secret: '',
-		access_token: '-KIcvQBLVo1j7QGLleDMod7njPr5LPslCOAICDRo',
-:x
+		access_token: '',
+		access_token_secret: ''
 	},
 
 	// web
 	web: {
+		port: 3456,
 		assets: path.join(__dirname, '..', 'assets'),
+		views: path.join(__dirname, '..', 'views'),
 		images: path.join(__dirname, '..', 'assets', 'images')
 	}
 };
