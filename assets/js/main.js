@@ -6,6 +6,7 @@ var theFinalCountdown = 10;
 function hand(){
    $(".modal").removeClass("show");
    $(".modal").addClass("show");
+   $(".modal.twitter").removeClass("show");
 	clearInterval(sout);
 
 	$(".modal .content span").addClass("show");
@@ -29,6 +30,7 @@ function handOut(){
 	$(".modal .content span").removeClass("show");
 
 	$(".modal").removeClass("show");
+	$(".modal.twitter").addClass("show");
 
 
 }
