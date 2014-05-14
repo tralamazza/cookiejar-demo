@@ -72,14 +72,14 @@ section.main{
 		right:0px;		
 		//.perspective;
 		text-align: center;
-		background-color:rgba(255, 255, 255, 0.4);
+		background-color: rgba(0, 0, 0, 0.51);
 		display:none;
 
 		div.content{
 			margin:0px auto;
 			width:600px;
 			min-height:200px;
-			margin-top:200px;
+			margin-top:300px;
 			position: relative;
 			//.scaleAndRotateX(0, 90deg);
 			//.box-shadow(5px 5px 5px rgba(70, 70, 70, 0.75));
@@ -103,10 +103,10 @@ section.main{
 				//.scale(0);
 				display: none;
 				h1{
-					font-size: 26px;
+					font-size: 40px;
 					font-weight: 300;
 					background-color: rgba(0, 136, 189, 0.93);
-					width: 280px;
+					width: 400px;
 
 					padding: 10px;
 					margin: 0px auto;
@@ -114,7 +114,7 @@ section.main{
 					.rounded-corners(10px);
 					strong{
 						color:red;
-						font-size:50px;
+						font-size:70px;
 					}
 				}
 			}
@@ -141,12 +141,41 @@ section.main{
 		
 		div.twitter{
 			z-index:1;
-			margin-top:100px;
+			margin-top:200px;
 			iframe{
-				height:400px;
+				height:650px !important;
+				width:1000px !important;
+
+
 			}
 		}
 	}
 
+}
+
+.root.timeline{
+	h1{
+		font-size: 56px !important;
+		margin: 10px;
+		margin-top: 30px;
+		margin-bottom: 30px;
+
+	}
+	span.full-name .p-name{
+		font-size:36px;
+
+	}
+	.e-entry-title{
+		font-size: 30px;
+		margin-bottom: 15px;
+		margin-top: 20px;
+		overflow:visible;
+	}
+	span.p-nickname{
+		font-size:28px;
+	}
+	time{
+		font-size: 28px;
+	}
 }
 

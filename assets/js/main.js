@@ -1,6 +1,14 @@
 var socket = io.connect('http://localhost:3456');
 
 
+$(document).ready(function(){
+	setTimeout(function(){
+		$(".twitter > #twitter-widget-0").contents().find("head").append("<link rel='stylesheet' href='/css/app.css'>");
+		console.log($(".twitter > #twitter-widget-0").contents());
+		window.contents = $(".twitter > #twitter-widget-0").contents();
+	},5000);
+});
+
 var sout;
 var theFinalCountdown = 10;
 function hand(){
@@ -8,7 +16,7 @@ function hand(){
    $(".modal").addClass("show");
    $(".modal.twitter").removeClass("show");
 	clearInterval(sout);
-
+	theFinalCountdown = 10;
 	$(".modal .content span").addClass("show");
 	sout = setInterval(function(){
 		theFinalCountdown -=1;
@@ -28,11 +36,9 @@ function handOut(){
 	$(".modal .content span").removeClass("show");
 	theFinalCountdown =10;
 	$(".modal .content span").removeClass("show");
-
+	$(".modal .content span h1 strong").html(theFinalCountdown);
 	$(".modal").removeClass("show");
 	$(".modal.twitter").addClass("show");
-
-
 }
 
 
@@ -53,6 +59,7 @@ socket.on("photos", function(data){
 		currentPhotos.push(photo);
 		addImg(photo);
 	}
+	console.log(data.length)
 });
 
 socket.on("added", function(photo){
