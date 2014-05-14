@@ -35,7 +35,7 @@ var server = http.createServer(app).listen(config.web.port, function () {
 	console.log('HTTP server listening on port', config.web.port);
 });
 
-var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(server, { log: false });
 
 var photos = createPhotos();
 var tweet = createTweet();
@@ -80,7 +80,7 @@ io.sockets.on('connection', function (socket) {
 	// remote event
 	socket.on('tweet', function (photo) {
 		console.log('Tweeting', photo);
-		tweet.post('cookies!', path.join(config.web.images, photo), function (err) {
+		tweet.post(config.twitter.message || 'BUSTED!', path.join(config.web.images, photo), function (err) {
 			console.log('[Tweet]', err);
 		});
 		alarm.rearm();
