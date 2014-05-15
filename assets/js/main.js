@@ -93,6 +93,12 @@ socket.on("removed", function(photo){
 
 });
 
+
+socket.on("sensor", function(data){
+	$(".deviceInfo span").html(JSON.stringify(data));
+
+});
+
 socket.on("abort", function(){
 	clearInterval(sout);
 	handOut();
