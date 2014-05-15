@@ -80,6 +80,7 @@ socket.on("added", function(photo){
 	}else{
 		lastAddedPhoto = photo;
 		$(".modal .content img").attr("src","/images/"+photo);
+
 		currentPhotos.push(photo);
 		hand();
 		addImg(photo);
@@ -91,6 +92,7 @@ socket.on("removed", function(photo){
 	if ($.inArray(photo, currentPhotos) > -1){
 		currentPhotos.split(currentPhotos.indexOf(photo));
 		console.log("found in array, remove it");
+		$("figure[file='"+photo+"']").remove();
 	}else{
 
 	}
