@@ -58,7 +58,7 @@ socket.on("photos", function(data){
 	console.log(data);
 	for (var i = 0, photo; photo = data[i]; i++){
 		currentPhotos.push(photo);
-		$(".history").append("<figure file='"+photo+"'><img width='480' height='270' src='/images/"+photo+"'/></figure>");
+		addImg(photo, true);
 	}
 	console.log(data.length)
 });
@@ -91,8 +91,10 @@ socket.on("abort", function(){
 	handOut();
 });
 
-function addImg(img){
+function addImg(img, noRemove){
 	$(".history").prepend("<figure file='"+img+"'><img width='480' height='270' src='/images/"+img+"'/></figure>");
-	$(".history figure").last().remove();
-
+	
+	if (!noRemove){
+		$(".history figure").last().remove();
+	}
 }
