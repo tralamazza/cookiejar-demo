@@ -4,7 +4,7 @@ body{
 	background-color: white;
 	font: inherit;
 	margin:0px;
-	background-color:rgb(231, 231, 231);
+	background-color:white;
 }
 
 h1, h2,h3,h4,h5,h6, a,p,input{
@@ -22,7 +22,7 @@ section.main{
 	overflow:hidden;
 	article.history{
 		display: inline-block;
-		width:100%;
+		width:50%;
 		height:100%;
 		position:absolute;
 		martin-top:0px;
@@ -68,18 +68,18 @@ section.main{
 		position:fixed;
 		width:100%;
 		height:100%;
-		left:0px;
+	
 		right:0px;		
 		//.perspective;
 		text-align: center;
-		background-color: rgba(0, 0, 0, 0.51);
+		//background-color: rgba(0, 0, 0, 0.51);
 		display:none;
-
+		z-index:100;
 		div.content{
 			margin:0px auto;
-			width:840px;
+			width:100%;
 			min-height:200px;
-			margin-top:400px;
+			margin-top:20px;
 			position: relative;
 			//.scaleAndRotateX(0, 90deg);
 			//.box-shadow(5px 5px 5px rgba(70, 70, 70, 0.75));
@@ -104,7 +104,7 @@ section.main{
 				h1{
 					font-size: 40px;
 					font-weight: 300;
-					background-color: rgba(66, 66, 66, 0.95);
+					background-color: rgba(66, 66, 66, 0.50);
 					width: 450px;
 
 					padding: 10px;
@@ -119,7 +119,7 @@ section.main{
 			}
 
 			span.show{
-				top:-190px;
+				top:50px;
 				display: block;
 				//.opacity(1);
 				//.transition(all,300ms,ease-in);
@@ -139,9 +139,9 @@ section.main{
 			//.opacity(1);
 		}
 		
-		div.twitter{
+		div.twitterBaby{
 			z-index:1;
-			margin-top:80px;
+			margin-top:5px;
 			iframe{
 				height:920px !important;
 				width:1000px !important;
@@ -150,21 +150,22 @@ section.main{
 			}
 		}
 	}
-
+	article.modal.twitter{
+		width: 47%;
+		right: 60px;
+		backgruond-color:white;
+	}
 	.deviceInfo{
 		display: block;
 		z-index: 10;
 		position: fixed;
-		width: 980px;
-		min-height: 60px;
+		width: 885px;
+		height: 111px;
 		color: #fff;
-		background-color: rgba(32, 32, 32, 0.61);
+		background-color: rgba(32, 32, 32, 1);
 		padding: 10px;
-		left: 0px;
-		right: 0px;
-		bottom: 34px;
-		margin-left: auto;
-		margin-right: auto;
+		right: 55px;
+		bottom: 25px;
 		font-family: "Courier New";
 		h2{
 			font-family: "Courier New";

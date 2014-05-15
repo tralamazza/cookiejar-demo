@@ -13,12 +13,7 @@ $(document).ready(function(){
 	if (!SHOW_TWITTER){
 		$(".modal.twitter").removeClass("show");
 	}
-	setTimeout(function(){
-		$(".twitter > #twitter-widget-0").contents().find("head").append("<link rel='stylesheet' href='/css/app.css'>");
-		$(".twitter > #twitter-widget-0").contents().find("h1").html("Chocolate Feed");
-		console.log($(".twitter > #twitter-widget-0").contents());
-		window.contents = $(".twitter > #twitter-widget-0").contents();
-	},5000);
+	reloadTwitter();
 });
 
 var sout;
@@ -36,6 +31,9 @@ function hand(){
 		if (ticker === 0){
 			clearInterval(sout);
 			socket.emit("tweet",lastAddedPhoto);
+			setTimeout(function(){
+				reloadTwitter();
+			},5000)
 			handOut();
 		}
 
@@ -116,4 +114,23 @@ function addImg(img, noRemove){
 	if (!noRemove){
 		$(".history figure").last().remove();
 	}
+}
+
+function reloadTwitter(){
+	$(".twitterBaby").html('<a class="twitter-timeline" href="https://twitter.com/RelayrCookieJar" data-tweet-limit="2" data-widget-id="465936244635996160"></a>');
+	var script   = document.createElement("script");
+	script.type  = "text/javascript";
+
+	script.text  = "!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');";
+
+	$(".twitterBaby").append(script);
+	$(".twitterBaby").hide();
+
+	setTimeout(function(){
+		$(".twitterBaby > iframe").contents().find("head").append("<link rel='stylesheet' href='/css/app.css'>");
+		$(".twitterBaby > iframe").contents().find("h1").html("<img src='/css/images/twitter.png'/> Who stole the cookies?");
+		console.log($(".twitterBaby > iframe").contents());
+		window.contents = $(".twitterBaby > iframe").contents();
+		$(".twitterBaby").show();
+	},2000);
 }
