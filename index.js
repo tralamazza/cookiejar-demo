@@ -12,6 +12,7 @@
 
 var express = require('express');
 var http = require('http');
+var path = require('path');
 var config = require('./lib/config');
 var createPhotos = require('./lib/photos');
 var createTweet = require('./lib/tweet');
@@ -48,7 +49,7 @@ alarm.on('theft', function (readings) {
 		if (err)
 			console.log('[snap]', err);
 		else
-			io.sockets.emit('added', photo);
+			io.sockets.emit('added', path.basename(photo));
 	});
 });
 alarm.on('error', function (err) {
@@ -59,6 +60,7 @@ button.on('pressed', function (value) {
 	console.log('[button]', value == 1 ? 'abort' : '');
 	if (value == 1) {
 		io.sockets.emit('abort');
+		alarm.rearm();
 	}
 });
 
@@ -70,12 +72,15 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.emit('photos', all_photos);
 	});
 	photos.on('removed', function (old_photo) {
-		io.sockets.emit('removed', old_photo);
+		io.sockets.emit('removed', path.basename(old_photo));
+	});
+	alarm.on('data', function (data) {
+		io.sockets.emit('sensor', data);
 	});
 	// remote event
 	socket.on('tweet', function (photo) {
 		console.log('Tweeting', photo);
-		tweet.post('cookies!', photo, function (err) {
+		tweet.post('cookies!', path.join(config.web.images, photo), function (err) {
 			console.log('[Tweet]', err);
 		});
 		alarm.rearm();
