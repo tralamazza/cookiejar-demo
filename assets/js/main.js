@@ -1,14 +1,18 @@
 var socket = io.connect('http://localhost:3456');
 
-//HERE YOU CAN CHANGE THE COUNTDOWN TIMER
+//HERE YOU CAN CHANGE THE COUNTDOWN TIMER AND TWITTER ON/OFF
 //---------------------------------------
 var THE_FINAL_COUNTDOWN = 5;
+var SHOW_TWITTER =true;
 //---------------------------------------
 //---------------------------------------
 
 
 
 $(document).ready(function(){
+	if (!SHOW_TWITTER){
+		$(".modal.twitter").removeClass("show");
+	}
 	setTimeout(function(){
 		$(".twitter > #twitter-widget-0").contents().find("head").append("<link rel='stylesheet' href='/css/app.css'>");
 		$(".twitter > #twitter-widget-0").contents().find("h1").html("Chocolate Feed");
@@ -46,7 +50,9 @@ function handOut(){
 	$(".modal .content span").removeClass("show");
 	$(".modal .content span h1 strong").html(ticker);
 	$(".modal").removeClass("show");
-	$(".modal.twitter").addClass("show");
+	if (SHOW_TWITTER){
+		$(".modal.twitter").addClass("show");
+	}
 }
 
 
