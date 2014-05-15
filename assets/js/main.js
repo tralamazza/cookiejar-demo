@@ -1,5 +1,12 @@
 var socket = io.connect('http://localhost:3456');
 
+//HERE YOU CAN CHANGE THE COUNTDOWN TIMER
+//---------------------------------------
+var THE_FINAL_COUNTDOWN = 5;
+//---------------------------------------
+//---------------------------------------
+
+
 
 $(document).ready(function(){
 	setTimeout(function(){
@@ -11,18 +18,18 @@ $(document).ready(function(){
 });
 
 var sout;
-var theFinalCountdown = 10;
+var ticker = 10;
 function hand(){
    $(".modal").removeClass("show");
    $(".modal").addClass("show");
    $(".modal.twitter").removeClass("show");
 	clearInterval(sout);
-	theFinalCountdown = 10;
+	ticker = THE_FINAL_COUNTDOWN;
 	$(".modal .content span").addClass("show");
 	sout = setInterval(function(){
-		theFinalCountdown -=1;
-		$(".modal .content span h1 strong").html(theFinalCountdown);
-		if (theFinalCountdown === 0){
+		ticker -=1;
+		$(".modal .content span h1 strong").html(ticker);
+		if (ticker === 0){
 			clearInterval(sout);
 			socket.emit("tweet",lastAddedPhoto);
 			handOut();
@@ -35,9 +42,9 @@ function hand(){
 function handOut(){
 	
 	$(".modal .content span").removeClass("show");
-	theFinalCountdown =10;
+	ticker =THE_FINAL_COUNTDOWN;
 	$(".modal .content span").removeClass("show");
-	$(".modal .content span h1 strong").html(theFinalCountdown);
+	$(".modal .content span h1 strong").html(ticker);
 	$(".modal").removeClass("show");
 	$(".modal.twitter").addClass("show");
 }
