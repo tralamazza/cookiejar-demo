@@ -58,7 +58,7 @@ socket.on("photos", function(data){
 	console.log(data);
 	for (var i = 0, photo; photo = data[i]; i++){
 		currentPhotos.push(photo);
-		addImg(photo);
+		$(".history").append("<figure file='"+photo+"'><img width='480' height='270' src='/images/"+photo+"'/></figure>");
 	}
 	console.log(data.length)
 });
