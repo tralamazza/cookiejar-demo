@@ -128,11 +128,11 @@ function reloadTwitter(){
 	$(".twitterBaby").append(script);
 	$(".twitterBaby").hide();
 
-	setTimeout(function(){
+/*	setTimeout(function(){
 		$(".twitterBaby > iframe").contents().find("head").append("<link rel='stylesheet' href='/css/app.css'>");
 		$(".twitterBaby > iframe").contents().find("h1").html("<img src='/css/images/twitter.png'/> Who stole the cookies?");
 		console.log($(".twitterBaby > iframe").contents());
 		window.contents = $(".twitterBaby > iframe").contents();
 		$(".twitterBaby").show();
-	},2000);
+	},2000);*/
 }
